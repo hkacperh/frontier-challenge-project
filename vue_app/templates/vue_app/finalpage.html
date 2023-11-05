@@ -1,0 +1,164 @@
+<!-- main_page.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- Add CSS styles here or link an external CSS file -->
+  <style scoped>
+    /* Add your CSS for styling here */
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Helvetica Neue', sans-serif; /* Modern, rounded font */
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-title {
+      font-size: 24px;
+      color: #ff0000; /* Red color for the title */
+      text-shadow: 2px 2px 3px #333;
+      margin-top: 20px;
+    }
+
+    .network-analysis {
+      background-color: #f9f9f9; /* Light gray background */
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 20px;
+    }
+
+    .statistics {
+      background-color: #ffffff; /* White background for statistics */
+      padding: 10px;
+    }
+
+    .category {
+      padding: 5px;
+    }
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    .category h2.no-risk {
+    color: #00ff00; /* Green color for "No risk of failure" */
+  }
+
+  .category h2.risk {
+    color: #ffff00; /* Yellow color for "Risk of failure" */
+  }
+
+  .category h2.risk-confirmed {
+    color: #ff0000; /* Red color for "Risk confirmed" */
+  }
+
+    /* .chart {
+    } */
+
+    .network-lists {
+      margin-top: 20px;
+    }
+
+    .list {
+      background-color: #ffffff; /* White background for network lists */
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px; /* Rounded corners */
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+  </style>
+
+  <title>Frontier (Winning) Project</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="network-analysis">
+        <h1 class="page-title">Network Failure Prediction Analysis</h1>
+        <div class="statistics">
+            <div class="category">
+                <h2>No risk of failure</h2>
+                <p>{{ statistics.no_risk }}</p>
+            </div>
+            <div class="category">
+                <h2>Risk of failure</h2>
+                <p>{{ statistics.risk }}</p>
+            </div>
+            <div class="category">
+                <h2>Risk confirmed</h2>
+                <p>{{ statistics.risk_confirmed }}</p>
+            </div>
+        </div>
+        <div class="chart"></div>
+        <div class="network-lists">
+            <div class="list">
+                <h2>Risk of Failure</h2>
+                <ul>
+                    <li v-for="network in riskList" :key="network">{{ network }}</li>
+                </ul>
+            </div>
+            <div class="list">
+                <h2>Risk Confirmed</h2>
+                <ul>
+                    <li v-for="network in confirmedList" :key="network">{{ network }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Initialize Vue.js -->
+  <script>
+    new Vue({
+      el: '#app',
+      delimiters: ['{{', '}}'],
+      data: {
+        statistics: {
+          no_risk,
+          risk,
+          risk_confirmed,
+        },
+        riskList: [],
+        confirmedList: [],
+      },
+      created() {
+        this.fetchNetworkStatistics();
+        this.fetchNetworkLists();
+      },
+      methods: {
+        fetchNetworkStatistics() {
+          axios.get('/backend/get_network_statistics/')
+            .then((response) => {
+              this.statistics = response.data;
+            })
+            .catch((error) => {
+              console.error('Error fetching network statistics:', error);
+            });
+        },
+        fetchNetworkLists() {
+          axios.get('/backend/get_network_lists/')
+            .then((response) => {
+              this.riskList = response.data.risk_list;
+              this.confirmedList = response.data.confirmed_list;
+            })
+            .catch((error) => {
+              console.error('Error fetching network lists:', error);
+            });
+        },
+      },
+    });
+  </script>
+  
+</body>
+</html>

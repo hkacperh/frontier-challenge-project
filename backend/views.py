@@ -28,3 +28,21 @@ def get_network_lists(request):
         'confirmed_list': confirmed_list,
     }
     return JsonResponse(data)
+
+from rest_framework import serializers, viewsets
+from .models import Network
+
+class NetworkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Network
+        fields = '__all__'
+
+class NetworkPredictView(viewsets.ReadOnlyModelViewSet):
+    serializer_class = NetworkSerializer
+    queryset = Network.objects.all()
+
+    def get_queryset(self):
+        # You can implement your prediction logic here and filter the queryset
+        # For example, if 'prediction' is a field in your Network model indicating status:
+        # return Network.objects.filter(prediction='No Risk')
+        return Network.objects.all()  # For demonstration purposes

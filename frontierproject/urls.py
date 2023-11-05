@@ -22,6 +22,6 @@ from backend import views as backend
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('frontend', vue_views.main_page_vue),
+    path('frontend', vue_views.get_page),
     path('backend/', include('backend.urls'))
 ]

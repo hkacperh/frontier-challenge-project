@@ -62,7 +62,7 @@ export default {
                 .catch((error) => {
                     // Handle errors, e.g., show an error message
                     console.error('Error fetching network statistics:', error);
-                }); s
+                });
         },
         fetchNetworkLists() {
             // Make an API call to get network lists
