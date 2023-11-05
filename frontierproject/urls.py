@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+#from frontend import views as vue_views
+from vue_app import views as vue_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('frontend', vue_views.main_page_vue)
 ]
