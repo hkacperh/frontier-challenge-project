@@ -1,22 +1,30 @@
-<html>
-  <head>
-    <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <title>Frontier (Winning) Project</title>
-  </head>
+<!-- your_template.html -->
+{% load static %}
 
-  <body>
-    <div id="vue-app">
-      <h1>[[ testMsg ]]</h1>
-    </div>
-    <script type="text/javascript">
-      let app = new Vue({
-        el: "#vue-app",
-        delimiters: ['[[', ']]'],
-        data: {
-          testMsg: 'meowwww :3',
-        },
-      });
-    </script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include Vue.js and your NetworkAnalysis.vue component -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="{% static 'path/to/NetworkAnalysis.vue' %}"></script>
+
+  <!-- Add your CSS stylesheets -->
+  <link rel="stylesheet" type="text/css" href="{% static 'path/to/styles.css' %}">
+
+  <title>Frontier (Winning) Project</title>
+</head>
+
+<body>
+  <div id="app">
+    <network-analysis></network-analysis>
+  </div>
+</body>
+
+<!-- Initialize Vue.js -->
+<script>
+  new Vue({
+    el: '#app',
+    delimiters: ['[[', ']]'],
+  });
+</script>
 </html>

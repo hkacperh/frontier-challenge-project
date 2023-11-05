@@ -15,11 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 #from frontend import views as vue_views
 from vue_app import views as vue_views
+from backend import views as backend
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('frontend', vue_views.main_page_vue)
+    path('frontend', vue_views.main_page_vue),
+    path('backend/', include('backend.urls'))
 ]
