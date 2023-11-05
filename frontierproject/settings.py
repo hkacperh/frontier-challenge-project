@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'frontierchallengedb', 
         'USER': 'postgres', 
-        'PASSWORD': 'Marimba1$()',
+        'PASSWORD': 'PASSWORD',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     }
