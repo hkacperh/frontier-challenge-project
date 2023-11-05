@@ -1,0 +1,30 @@
+<!-- your_template.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include Vue.js and your NetworkAnalysis.vue component -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="{% static 'path/to/NetworkAnalysis.vue' %}"></script>
+
+  <!-- Add your CSS stylesheets -->
+  <link rel="stylesheet" type="text/css" href="{% static 'path/to/styles.css' %}">
+
+  <title>Frontier (Winning) Project</title>
+</head>
+
+<body>
+  <div id="app">
+    <network-analysis></network-analysis>
+  </div>
+</body>
+
+<!-- Initialize Vue.js -->
+<script>
+  new Vue({
+    el: '#app',
+    delimiters: ['[[', ']]'],
+  });
+</script>
+</html>

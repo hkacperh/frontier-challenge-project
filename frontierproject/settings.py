@@ -31,11 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'vue_app.apps.VueAppConfig',    # not default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'backend.apps.BackendConfig' #not default
 ]
 
 MIDDLEWARE = [
@@ -72,12 +74,33 @@ WSGI_APPLICATION = 'frontierproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+import os
+import dj_database_url
+
+# # Use environment variable for database URL or define it here
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+
+# DATABASES = {
+#     'default': dj_database_url.config(default=DATABASE_URL)
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'frontierchallengedb', 
+        'USER': 'postgres', 
+        'PASSWORD': 'PASSWORD',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
