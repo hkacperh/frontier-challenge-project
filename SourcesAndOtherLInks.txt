@@ -1,0 +1,4 @@
+https://github.com/bhattbhavesh91/imbalance_class_sklearn/blob/master/imbalance_class_undersampling_oversampling.ipynb
+https://hackutd.notion.site/Devpost-Guide-7775720c1f0d4dbd9dd9d4127cb0a16d
+https://youtu.be/ioL8XwnBbWs?si=fsgO5XMTNfS6KNSq
+Website Repo: https://github.com/hkacperh/frontier-challenge-project
