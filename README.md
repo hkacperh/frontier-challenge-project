@@ -3,6 +3,7 @@ HackUTD Frontier challenge project
 Contributors: Hassan Hashemian, Syed Naqvi, Alveena Rahman
 
 **UPDATE**: This project won 1st place for Frontier's challenge at HackUTD as well as the beginner track award for HackUTD overall.
+This project is unfinished and could use more, but the repository has been archived to preserve its state when submitted for HackUTD.
 
 This project involved a multifaceted solution to predict when Frontier internet networks would fail.
 
