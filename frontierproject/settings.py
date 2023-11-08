@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'vue_app.apps.VueAppConfig',    # not default
+    'rest_framework',               # not default
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'frontierproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'frontierchallengedb', 
         'USER': 'postgres', 
-        'PASSWORD': 'PASSWORD',
+        'PASSWORD': 'Marimba1$()',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     }

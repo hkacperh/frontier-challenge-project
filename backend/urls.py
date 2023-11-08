@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from . import views as apiviews
 
 urlpatterns = [
-    path('backend/get_network_statistics/', views.get_network_statistics, name='get_network_statistics'),
-    path('backend/get_network_lists/', views.get_network_lists, name='get_network_lists')
+    path('backend/statistics/', apiviews.get_network_statistics),
+    path('backend/lists/', apiviews.get_network_lists)
 ]

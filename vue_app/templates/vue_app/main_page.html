@@ -12,16 +12,16 @@
   <style scoped>
     /* Add your CSS for styling here */
     body {
-      background-color: #f4f4f4;
+      background-color: #4f2424;
       font-family: 'Helvetica Neue', sans-serif; /* Modern, rounded font */
       margin: 0;
       padding: 0;
     }
 
     .page-title {
-      font-size: 24px;
-      color: #ff0000; /* Red color for the title */
-      text-shadow: 2px 2px 3px #333;
+      font-size: 32px;
+      color: #740202; /* Red color for the title */
+      text-shadow: 1px 1px 2px #333;
       margin-top: 20px;
     }
 
@@ -45,16 +45,16 @@
       margin-bottom: 5px;
     }
 
-    .category h2.no-risk {
-    color: #00ff00; /* Green color for "No risk of failure" */
+    .no-risk {
+    color: #0ca00c; /* Green color for "No risk of failure" */
   }
 
-  .category h2.risk {
-    color: #ffff00; /* Yellow color for "Risk of failure" */
+  .risk-of-failure {
+    color: #a2a20d; /* Yellow color for "Risk of failure" */
   }
 
-  .category h2.risk-confirmed {
-    color: #ff0000; /* Red color for "Risk confirmed" */
+  .risk-confirmed {
+    color: #9c0909; /* Red color for "Risk confirmed" */
   }
 
     /* .chart {
@@ -87,17 +87,20 @@
     <div class="network-analysis">
         <h1 class="page-title">Network Failure Prediction Analysis</h1>
         <div class="statistics">
-            <div class="category">
+            <div class="no-risk">
                 <h2>No risk of failure</h2>
-                <p>{{ statistics.no_risk }}</p>
+                <p>113</p>
+                <p>[[ statistics.no_risk ]]</p>
             </div>
-            <div class="category">
+            <div class="risk-of-failure">
                 <h2>Risk of failure</h2>
-                <p>{{ statistics.risk }}</p>
+                <p>6</p>
+                <p>[[ statistics.risk ]]</p>
             </div>
-            <div class="category">
+            <div class="risk-confirmed">
                 <h2>Risk confirmed</h2>
-                <p>{{ statistics.risk_confirmed }}</p>
+                <p>3</p>
+                <p>[[ statistics.risk_confirmed ]]</p>
             </div>
         </div>
         <div class="chart"></div>
@@ -105,13 +108,26 @@
             <div class="list">
                 <h2>Risk of Failure</h2>
                 <ul>
-                    <li v-for="network in riskList" :key="network">{{ network }}</li>
+                  <p>Network A</p>
+                  <p>Network B</p>
+                  <p>Network C</p>
+                  <p>Network D</p>
+                  <p>Network E</p>
+                  <p>Network F</p>
+                </ul>
+                <ul>
+                    <!--<li v-for="network in riskList" :key="network">[[ network ]]</li>-->
                 </ul>
             </div>
             <div class="list">
                 <h2>Risk Confirmed</h2>
                 <ul>
-                    <li v-for="network in confirmedList" :key="network">{{ network }}</li>
+                  <p>Network G</p>
+                  <p>Network H</p>
+                  <p>Network I</p>
+                </ul>
+                <ul>
+                    <!--<li v-for="network in confirmedList" :key="network">[[ network ]]</li>-->
                 </ul>
             </div>
         </div>
@@ -122,7 +138,7 @@
   <script>
     new Vue({
       el: '#app',
-      delimiters: ['{{', '}}'],
+      delimiters: ['[[', ']]'],
       data: {
         statistics: {
           no_risk,
@@ -135,22 +151,26 @@
       created() {
         this.fetchNetworkStatistics();
         this.fetchNetworkLists();
+        console.log('data filled')
       },
       methods: {
         fetchNetworkStatistics() {
-          axios.get('/backend/get_network_statistics/')
+          axios.get('/backend/statistics/')
             .then((response) => {
               this.statistics = response.data;
+              console.log(statistics)
             })
             .catch((error) => {
               console.error('Error fetching network statistics:', error);
             });
         },
         fetchNetworkLists() {
-          axios.get('/backend/get_network_lists/')
+          axios.get('/backend/lists/')
             .then((response) => {
               this.riskList = response.data.risk_list;
               this.confirmedList = response.data.confirmed_list;
+              console.log(riskList)
+              console.log(confirmedList)
             })
             .catch((error) => {
               console.error('Error fetching network lists:', error);
